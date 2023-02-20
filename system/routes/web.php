@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\FieldForConsultSQL;
+use App\Http\Controllers\FieldController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/fieldSearch', [FieldForConsultSQL::class, 'index'])
+Route::get('/fieldSearch', [FieldController::class, 'index'])
     ->name('search.index');
-Route::get('/FieldSearch/consult', [FieldForConsultSQL::class, 'createConsult'])
+Route::post('/FieldSearch/consult', [FieldController::class, 'consultCreate'])
     ->name('consult.create');

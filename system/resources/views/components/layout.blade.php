@@ -10,15 +10,23 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-12 d-flex justify-content-center align-items-center">
-                <div class="mb-3 w-100">
-                    <label for="exampleFormControlTextarea1" class="form-label">Consultas SQL</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row w-100">
+            <div class="col-8 col-md-8 ">
+                <form action="{{ route('consult.create') }}" method="post">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">
+                            <h3 class="m-2 mt-5">Consultas SQL</h3>
+                        </label>
+
+                        <textarea class="form-control" id="textArea" name="textArea" rows="7"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary  mt-3">Enviar</button>
+                </form>
             </div>
         </div>
     </div>
 </body>
+
 </html>
