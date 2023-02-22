@@ -8,28 +8,37 @@ use Illuminate\Support\Str;
 
 class FieldController extends Controller
 {
-    public function index(){
-    
-        $fieldModel = new Field;
-        $dataBaseTables = $fieldModel->tablesConsult();
-        $mensagemSuccess = session('mensagem.success');
+    private $fieldModel;
+    private $dataBaseTables;
+    private $mensagemSuccess;
 
-        return view('index')->with('dataBaseTables', $dataBaseTables)
-            ->with('mensagemSuccess', $mensagemSuccess);
+    public function __construct(){
+        $this->fieldModel = new Field;
+        $this->dataBaseTables = $this->fieldModel->tablesConsult();
+        $this->mensagemSuccess = session('mensagem.success');
+    }
+
+    public function index(){
+        
+
+        return view('index')->with('dataBaseTables', $this->dataBaseTables)
+            ->with('mensagemSuccess', $this->mensagemSuccess);
     }
 
     public function consultCreate(Request $request)
     {
-        $fieldModel = new Field;
-        if(Str::startsWith($request->textArea,'select')){
-             $responseSelect = $fieldModel->fieldConsultSelect($request->textArea);
-        }else{
-            $fieldModel->fieldConsult($request->textArea);
-        }
-        dd($responseSelect);
         
-        return to_route('search.index')->with('responseSelect',$responseSelect)
-            ->with('mensagem.success', "Comando válido !");
+        if(Str::startsWith($request->textArea,'select')){
+             $responseSelect = $this->fieldModel->fieldConsultSelect($request->textArea);
+        }else{
+            $this->fieldModel->fieldConsult($request->textArea);
+        }
+        
+        
+        return view('fieldResult')->with('responseSelect', $responseSelect)
+            ->with('dataBaseTables', $this->dataBaseTables)
+            ->with('mensagemSuccess', $this->mensagemSuccess);
+            
     }
 
 }

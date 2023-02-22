@@ -1,4 +1,1 @@
-<x-layout title="Edu" :mensagem-success="$mensagemSuccess" :data-base-tables="$dataBaseTables" >
-    
-
-</x-layout>
+<x-layout :mensagem-success="$mensagemSuccess" :data-base-tables="$dataBaseTables"/>
