@@ -20,5 +20,5 @@ Route::get('/', function () {
 
 Route::get('/fieldSearch', [FieldController::class, 'index'])
     ->name('search.index');
-Route::post('/FieldSearch/consult', [FieldController::class, 'consultCreate'])
+Route::post('/fieldSearch/consult', [FieldController::class, 'consultCreate'])
     ->name('consult.create');
