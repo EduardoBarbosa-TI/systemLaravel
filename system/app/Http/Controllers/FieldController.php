@@ -13,6 +13,7 @@ class FieldController extends Controller
         $fieldModel = new Field;
         $dataBaseTables = $fieldModel->tablesConsult();
         $mensagemSuccess = session('mensagem.success');
+
         return view('index')->with('dataBaseTables', $dataBaseTables)
             ->with('mensagemSuccess', $mensagemSuccess);
     }
@@ -31,7 +32,4 @@ class FieldController extends Controller
             ->with('mensagem.success', "Comando válido !");
     }
 
-    public function consultTables(){
-
-    }
 }
